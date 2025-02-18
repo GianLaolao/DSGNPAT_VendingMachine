@@ -1,0 +1,41 @@
+10
+Sesame Seed Bun
+21
+200
+Images\sesamee_seed_bun.png
+Wheat Bun
+21
+140
+Images\wheat_bun.png
+Brioche Bun
+21
+240
+Images\brioche_bun.png
+Beef Patty
+32
+225
+Images\beef_patty.png
+Vegan Patty
+32
+177
+Images\vegan_patty.png
+Chicken Fillet
+29
+221
+Images\chicken_fillet.png
+Bacon Strips
+13
+82
+Images\bacon_strips.png
+Ham
+13
+145
+Images\ham.png
+Egg
+8
+97
+Images\egg.png
+Sausage
+16
+229
+Images\sausage.png

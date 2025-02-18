@@ -1,0 +1,33 @@
+8
+Tomato
+5
+7
+null
+Lettuce
+5
+1
+null
+Pickles
+5
+3
+null
+Onion
+5
+15
+null
+American Cheese
+5
+104
+null
+Cheddar Cheese
+5
+113
+null
+Swiss Cheese
+5
+106
+null
+Barbeque Sauce
+5
+29
+null
