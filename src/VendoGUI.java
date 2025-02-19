@@ -33,9 +33,10 @@ public class VendoGUI extends JFrame implements ActionListener{
 
     public VendoGUI (int choice){ 
         
-        RegularVendo.sellableItems = initialize.initialize("src\\ItemSellable.txt");
-        SpecialVendo.nonSellableItems = initialize.initialize("src\\ItemNonSell.txt");
+        RegularVendo.sellableItems = initialize.initialize("src/ItemSellable.txt");
+        SpecialVendo.nonSellableItems = initialize.initialize("src/ItemNonSell.txt");
         SpecialVendo.createdItems = initialize.initializeCreated();
+
 
         vendo.getRegular().setRecords(initialize.createRecord(RegularVendo.sellableItems));
         vendo.getSpecial().setNonSellRecords(initialize.createRecord(SpecialVendo.nonSellableItems));

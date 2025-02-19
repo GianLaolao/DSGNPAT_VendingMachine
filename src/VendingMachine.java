@@ -95,12 +95,15 @@ public class VendingMachine {
     //calculate and retrieve the total sales for all items in the vending machine.
     public int getTotalSales() {
 
+        final int TOTAL_SELLABLE_ITEM = 10;
+        final int TOTAL_NON_SELLABLE_ITEM = 8;
+        final int TOTAL_CREATED_ITEM = 3;
         int totalSales = 0;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < TOTAL_SELLABLE_ITEM; i++) {
             totalSales += regular.getSellableRecords()[i].getSoldAmount();
-            if (i < 8)
+            if (i < TOTAL_NON_SELLABLE_ITEM)
                 totalSales += special.getNonSellRecords()[i].getSoldAmount();
-            if (i < 3)
+            if (i < TOTAL_CREATED_ITEM)
                 totalSales += special.getCreatedRecords()[i].getSoldAmount();
         }
         

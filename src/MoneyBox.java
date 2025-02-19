@@ -41,6 +41,15 @@ public class MoneyBox {
         return denominations;
     }
 
+    public int[] getCashDenominations(){
+        int[] cashDenominations = new int[denominations.length];
+        for (int i = 0; i < denominations.length; i++)
+        {
+            cashDenominations[i] = denominations[i].getValue();
+        }
+        return cashDenominations;
+    }
+
     public Cash getCash(int denom) {
         return denominations[denom];
     }
