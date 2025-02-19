@@ -7,8 +7,10 @@ import java.util.*;
  */
 
 public class VendingMachine {
-    
-    private MoneyCalc moneyCalc = new MoneyCalc();
+
+    private MoneyBox vendoMoney = new MoneyBox();
+    private UserMoneyBox userMoney = new UserMoneyBox();
+    private MoneyCalc moneyCalc = new MoneyCalc(vendoMoney, userMoney);
     private RegularVendo regular = new RegularVendo();
     private SpecialVendo special = new SpecialVendo();
 
@@ -137,6 +139,13 @@ public class VendingMachine {
 
     public MoneyCalc getMoneyCalc() {
         return moneyCalc;
+    }
+    public MoneyBox getVendoMoney(){
+        return vendoMoney;
+    }
+
+    public UserMoneyBox getUserMoney(){
+        return userMoney;
     }
 
     public RegularVendo getRegular() {

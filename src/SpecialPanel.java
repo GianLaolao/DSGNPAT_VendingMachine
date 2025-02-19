@@ -795,7 +795,7 @@ public class SpecialPanel extends JPanel implements ActionListener {
         }
         if (e.getSource() == regular || e.getSource() == mainte) {
             clearButtons();
-            vendo.getMoneyCalc().resetUserMoney();
+            vendo.getUserMoney().resetUserMoney();
         }
         if (e.getSource() == cancel) {
             clearButtons();
@@ -805,7 +805,7 @@ public class SpecialPanel extends JPanel implements ActionListener {
 
     public boolean dispense() {
         try {
-                if (vendo.getMoneyCalc().checkUserMoney(Integer.parseInt(total.getText()))) {
+                if (vendo.getUserMoney().checkUserMoney(Integer.parseInt(total.getText()))) {
                     burger = new ArrayList<>(); 
                     for (int i = 0; i < 4; i++) {
                          if (order[i] != null)
