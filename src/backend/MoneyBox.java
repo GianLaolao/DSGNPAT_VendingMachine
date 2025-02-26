@@ -1,3 +1,4 @@
+package backend;
 public class MoneyBox implements MoneyBoxInterface {
     //declaration of denominations
      

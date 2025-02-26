@@ -1,3 +1,4 @@
+package backend;
 /*
  * An Item represents a vending machine item available for purchase. It contains 
  * the name of the item, its price, amount of calories, and quantity. 

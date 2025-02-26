@@ -1,3 +1,4 @@
+package backend;
 /*
  * A RegularVendo holds the eight (8) item slots available for purchase. 
  */
@@ -5,7 +6,7 @@
 public class RegularVendo{
 
     //can hold item instances
-    protected static Item sellableItems[]; //hold available sellable items
+    public static Item sellableItems[]; //hold available sellable items
     private Record sellableRecords[]; //store the recordds of sellable items
     private Item[] slotsItem = new Item[8]; //accepts ArrayList of Item
 

@@ -1,4 +1,11 @@
+package gui;
 import javax.swing.*;
+
+import backend.Initialize;
+import backend.RegularVendo;
+import backend.SpecialVendo;
+import backend.VendingMachine;
+
 import java.awt.event.*;
 import java.awt.*;
 

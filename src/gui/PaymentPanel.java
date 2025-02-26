@@ -1,5 +1,10 @@
+package gui;
 import java.awt.event.*;
 import javax.swing.*;
+
+import backend.MoneyBox;
+import backend.VendingMachine;
+
 import java.awt.*;
 
 public class PaymentPanel extends JPanel implements ActionListener {

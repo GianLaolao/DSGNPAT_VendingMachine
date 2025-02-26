@@ -1,6 +1,13 @@
+package gui;
 
 import javax.swing.*;
 import javax.swing.Timer;
+
+import backend.Item;
+import backend.RegularVendo;
+import backend.SpecialVendo;
+import backend.VendingMachine;
+
 import java.awt.event.*;
 import java.awt.*;
 import java.util.*;

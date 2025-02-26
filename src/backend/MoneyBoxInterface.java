@@ -1,3 +1,4 @@
+package backend;
 public interface MoneyBoxInterface {
     void setDenom(int slot, int quantity);
     Cash[] getDenominations();

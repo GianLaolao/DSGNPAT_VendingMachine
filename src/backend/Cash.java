@@ -1,3 +1,4 @@
+package backend;
 /*
  * Cash represents a user's cash at hand. It contains the cash value, quantity
  * and total number of cash for the user. 

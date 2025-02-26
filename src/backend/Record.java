@@ -1,3 +1,4 @@
+package backend;
 /* 
  * A Record represents the vending machine's inventory and record for items sold. It contains 
  * the items available, items sold, and starting inventory.  
