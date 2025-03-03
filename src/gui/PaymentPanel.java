@@ -1,5 +1,10 @@
+package gui;
 import java.awt.event.*;
 import javax.swing.*;
+
+import backend.MoneyBox;
+import backend.VendingMachine;
+
 import java.awt.*;
 
 public class PaymentPanel extends JPanel implements ActionListener {
@@ -75,7 +80,7 @@ public class PaymentPanel extends JPanel implements ActionListener {
             }
         }
         text.setText(message);
-        vendo.getMoneyCalc().resetUserMoney();
+        vendo.getUserMoney().resetUserMoney();
         JOptionPane.showMessageDialog(null, text, "Payment Return", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -110,44 +115,44 @@ public class PaymentPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
     
         if (e.getSource() == one){
-            vendo.getMoneyCalc().takePayment(0);
+            vendo.getUserMoney().takePayment(0);
             payment.setText(String.format("%d", vendo.getMoneyCalc().getUserMoney().getTotal()));
         }
         if (e.getSource() == five){
-            vendo.getMoneyCalc().takePayment(1);
+            vendo.getUserMoney().takePayment(1);
             payment.setText(String.format("%d", vendo.getMoneyCalc().getUserMoney().getTotal()));
         }
         if (e.getSource() == ten){
-            vendo.getMoneyCalc().takePayment(2);
+            vendo.getUserMoney().takePayment(2);
             payment.setText(String.format("%d", vendo.getMoneyCalc().getUserMoney().getTotal()));
         }
         if (e.getSource() == twenty){
-            vendo.getMoneyCalc().takePayment(3);
+            vendo.getUserMoney().takePayment(3);
             payment.setText(String.format("%d", vendo.getMoneyCalc().getUserMoney().getTotal()));
         }
         if (e.getSource() == fifty){
-            vendo.getMoneyCalc().takePayment(4);
+            vendo.getUserMoney().takePayment(4);
             payment.setText(String.format("%d", vendo.getMoneyCalc().getUserMoney().getTotal()));
         }
         if (e.getSource() == hundred){
-            vendo.getMoneyCalc().takePayment(5);
+            vendo.getUserMoney().takePayment(5);
             payment.setText(String.format("%d", vendo.getMoneyCalc().getUserMoney().getTotal()));
         }
         if (e.getSource() == twoHun){
-            vendo.getMoneyCalc().takePayment(6);
+            vendo.getUserMoney().takePayment(6);
             payment.setText(String.format("%d", vendo.getMoneyCalc().getUserMoney().getTotal()));
         }
         if (e.getSource() == fiveHun){
-            vendo.getMoneyCalc().takePayment(7);
+            vendo.getUserMoney().takePayment(7);
             payment.setText(String.format("%d", vendo.getMoneyCalc().getUserMoney().getTotal()));
         }
         if (e.getSource() == thou){
-            vendo.getMoneyCalc().takePayment(8);
+            vendo.getUserMoney().takePayment(8);
             payment.setText(String.format("%d", vendo.getMoneyCalc().getUserMoney().getTotal()));
         }
         if (e.getSource() == dispense) {
 
-            boolean check = vendo.getMoneyCalc().checkUserMoney(Integer.parseInt(totalPrice.getText()));
+            boolean check = vendo.getUserMoney().checkUserMoney(Integer.parseInt(totalPrice.getText()));
             MoneyBox change = vendo.getMoneyCalc().produceChange(Integer.parseInt(totalPrice.getText()));
             
             try {
@@ -164,7 +169,7 @@ public class PaymentPanel extends JPanel implements ActionListener {
                     else if (change == null) {
                         JOptionPane.showMessageDialog(null, "Not Enough Change.", "Transaction Fail", JOptionPane.INFORMATION_MESSAGE);
                         returnChange();
-                        vendo.getMoneyCalc().resetUserMoney();
+                        vendo.getUserMoney().resetUserMoney();
                         payment.setText("Php 0.00");
                         totalPrice.setText("0");
                         screen.setText("\t        Order: \n\n");
@@ -189,7 +194,7 @@ public class PaymentPanel extends JPanel implements ActionListener {
                 returnChange();
         }
         else {
-            boolean check = vendo.getMoneyCalc().checkUserMoney(Integer.parseInt(totalPrice.getText()));
+            boolean check = vendo.getUserMoney().checkUserMoney(Integer.parseInt(totalPrice.getText()));
             MoneyBox change = vendo.getMoneyCalc().produceChange(Integer.parseInt(totalPrice.getText()));
                 
             if (check && change != null) {
@@ -202,7 +207,7 @@ public class PaymentPanel extends JPanel implements ActionListener {
             else if (change == null) {
                 JOptionPane.showMessageDialog(null, "Not Enough Change.", "Transaction Fail", JOptionPane.INFORMATION_MESSAGE);
                 returnChange();
-                vendo.getMoneyCalc().resetUserMoney();
+                vendo.getUserMoney().resetUserMoney();
                 payment.setText("Php 0.00");
                 totalPrice.setText("0");
                 screen.setText("\t        Order: \n\n");

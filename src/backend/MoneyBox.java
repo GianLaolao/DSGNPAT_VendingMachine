@@ -1,8 +1,9 @@
-public class MoneyBox {
+package backend;
+public class MoneyBox implements MoneyBoxInterface {
     //declaration of denominations
      
     private Cash[] denominations = new Cash[9];
-     
+
     public MoneyBox() {
 
         Cash onePeso = new Cash(1);
@@ -29,7 +30,7 @@ public class MoneyBox {
  * sets the quantity on a specific denomination
  * @param quantity the quantity to be added
  */
-
+    @Override
     public void setDenom(int slot, int quantity) {
         
         denominations[slot].setQuantity(quantity);
@@ -37,10 +38,12 @@ public class MoneyBox {
 /*
  * returns the object of a specific denomination
  */
+    @Override
     public Cash[] getDenominations() {
         return denominations;
     }
 
+    @Override
     public int[] getCashDenominations(){
         int[] cashDenominations = new int[denominations.length];
         for (int i = 0; i < denominations.length; i++)
@@ -50,13 +53,19 @@ public class MoneyBox {
         return cashDenominations;
     }
 
+    @Override
     public Cash getCash(int denom) {
         return denominations[denom];
     }
 
+    @Override
+    public int getCashQuantity(int denom){
+        return denominations[denom].getQuantity();
+    }
 /*
  * returns the total amount of money in the money box
  */
+    @Override
     public int getTotal(){
 
         int total = 0;

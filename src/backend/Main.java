@@ -1,5 +1,8 @@
+package backend;
 
 import javax.swing.*;
+
+import gui.VendoGUI;
 
 public class Main{
     public static void main(String[] args) {

@@ -1,3 +1,4 @@
+package backend;
 
 import java.util.*;
 
@@ -7,10 +8,14 @@ import java.util.*;
  */
 
 public class VendingMachine {
-    
-    private MoneyCalc moneyCalc = new MoneyCalc();
-    private RegularVendo regular = new RegularVendo();
-    private SpecialVendo special = new SpecialVendo();
+
+    private MoneyBox vendoMoney = new MoneyBox();
+    private UserMoneyBox userMoney = new UserMoneyBox();
+    private MoneyCalc moneyCalc = new MoneyCalc(vendoMoney, userMoney);
+
+    private VendoFactory vendoFactory = new VendoFactory();
+    private RegularVendo regular = vendoFactory.getNewRegularVendo();
+    private SpecialVendo special = vendoFactory.getNewSpecialVendo();
 
     /*
      * puts an item into a speicific slot
@@ -137,6 +142,13 @@ public class VendingMachine {
 
     public MoneyCalc getMoneyCalc() {
         return moneyCalc;
+    }
+    public MoneyBox getVendoMoney(){
+        return vendoMoney;
+    }
+
+    public UserMoneyBox getUserMoney(){
+        return userMoney;
     }
 
     public RegularVendo getRegular() {

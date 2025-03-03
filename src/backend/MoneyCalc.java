@@ -1,39 +1,17 @@
+package backend;
 
 
-public class MoneyCalc {
+public class MoneyCalc extends Calculate{
 
-    private MoneyBox vendoMoney = new MoneyBox();
-    private MoneyBox userMoney = new MoneyBox();
-
-/* 
- * takes payment from the user 
- * @param type the money paid by user 
- */
-    public void takePayment(int type) {
-
-        userMoney.setDenom(type, userMoney.getCash(type).getQuantity() + 1);
-
+    MoneyCalc(MoneyBox vendoMoney, UserMoneyBox userMoney)
+    {
+        super(vendoMoney, userMoney);
     }
-
-/*
- * checks the money of the user 
- * @param slot the slot of the item selected
- * @param quantity the quantity of item bought by the user
- */
-    public boolean checkUserMoney(int price) {
-
-        if (price > userMoney.getTotal())
-            return false;
-        else if (userMoney.getTotal() - price > vendoMoney.getTotal()) 
-            return false;
-
-        return true;
-    }
-
 /* 
  * produces money change for the user 
  * @param totalPrice the total price of the item ordered
  */
+    @Override
     public MoneyBox produceChange(int totalPrice) {
 
         MoneyBox changeBox = new MoneyBox(); 
@@ -47,23 +25,24 @@ public class MoneyCalc {
 
         // adding cash to the money box
         for (int i = 0; i < 9; i++) {
-            vendoMoney.setDenom(i, vendoMoney.getCash(i).getQuantity() + userMoney.getDenominations()[i].getQuantity());
+            vendoMoney.setDenom(i, vendoMoney.getCashQuantity(i) + userMoney.getCashQuantity(i));
         }
 
         int[] cashDenominations = vendoMoney.getCashDenominations();
         for (int i = 8; i >= 0; i-- )
         {
             int currentDenomination = cashDenominations[i];
+            int currentCashQuantity = vendoMoney.getCashQuantity(i);
             if (vendoMoney.getCash(i).getQuantity() != 0){
                 int amount = change / currentDenomination;
-                if ((change / currentDenomination != 0) && amount > vendoMoney.getCash(i).getQuantity()) {
-                    change -= vendoMoney.getCash(i).getQuantity() * 100;
-                    changeBox.setDenom(i, vendoMoney.getCash(i).getQuantity());
+                if ((change / currentDenomination != 0) && amount > currentCashQuantity) {
+                    change -= currentCashQuantity * 100;
+                    changeBox.setDenom(i, currentCashQuantity);
                     vendoMoney.setDenom(i, 0);
                 }
                 else if (change / currentDenomination != 0) {
                     change -= amount * currentDenomination;
-                    vendoMoney.setDenom(i, vendoMoney.getCash(i).getQuantity() - amount);
+                    vendoMoney.setDenom(i, currentCashQuantity - amount);
                     changeBox.setDenom(i, amount);
                 }
             }
@@ -72,26 +51,16 @@ public class MoneyCalc {
         if (change != 0)
             return null;
         else {
-            resetUserMoney();
+            userMoney.resetUserMoney();
 
             return changeBox;
         }
     }
 
-/*
-* resets userMoney quantity for each denomination to 0
-*/
-    public void resetUserMoney() {
-
-        for (int i = 0; i < 9; i++) {
-            userMoney.getCash(i).setQuantity(0);
-        }
-    }
-
-    
-/* 
- * retrieves profit for the vending machine  
- */
+    /*
+     * retrieves profit for the vending machine
+     */
+    @Override
     public int retrieveProfit() {
 
         int profit;
@@ -99,7 +68,7 @@ public class MoneyCalc {
         profit = vendoMoney.getTotal();
 
         for (int i = 0; i < 9; i++) {
-            vendoMoney.getCash(i).setQuantity(0);
+            userMoney.getCash(i).setQuantity(0);
         }
 
         return profit;

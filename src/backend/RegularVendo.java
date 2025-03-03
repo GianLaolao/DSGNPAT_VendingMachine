@@ -1,25 +1,28 @@
+package backend;
 /*
  * A RegularVendo holds the eight (8) item slots available for purchase. 
  */
 
-public class RegularVendo{
+public class RegularVendo implements Vendo{
 
     //can hold item instances
-    protected static Item sellableItems[]; //hold available sellable items
+    public static Item sellableItems[]; //hold available sellable items
     private Record sellableRecords[]; //store the recordds of sellable items
     private Item[] slotsItem = new Item[8]; //accepts ArrayList of Item
 
-
+    @Override
     //set the records of sellable items
     public void setRecords(Record[] records) {
         this.sellableRecords = records;
     }
 
+    @Override
     //retrieve the records of sellable items
     public Record[] getSellableRecords() {
         return sellableRecords; //returns the vending machine records
     }
 
+    @Override
     /* 
      * returns the records of a specific item
      * @param item the item for which to retrieve the record

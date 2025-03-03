@@ -1,5 +1,11 @@
+package gui;
 
 import javax.swing.*;
+
+import backend.Item;
+import backend.RegularVendo;
+import backend.VendingMachine;
+
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.*;
@@ -249,7 +255,7 @@ public class RegularPanel extends JPanel implements ActionListener {
         }
         if (e.getSource() == special || e.getSource() == mainte) {
             order = null;
-            vendo.getMoneyCalc().resetUserMoney();
+            vendo.getUserMoney().resetUserMoney();
         } 
         if (e.getSource() == cancel) {
             order = null;
@@ -259,7 +265,7 @@ public class RegularPanel extends JPanel implements ActionListener {
 
     public void dispense() {
         try {
-            if (vendo.getMoneyCalc().checkUserMoney(Integer.parseInt(total.getText()))) {
+            if (vendo.getUserMoney().checkUserMoney(Integer.parseInt(total.getText()))) {
                 if (order != null) {
                     vendo.dispenseItem(order);
                     printOrder();

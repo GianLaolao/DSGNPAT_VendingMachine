@@ -1,12 +1,13 @@
+package backend;
 
 public class SpecialVendo extends RegularVendo{
 
     //hold non-sellable items an their records for special vending machine
-    protected static Item nonSellableItems[];
+    public static Item nonSellableItems[];
     private Record nonSellRecords[];
 
     //hold created items and their records for special vending machine
-    protected static CreatedItem createdItems[];
+    public static CreatedItem createdItems[];
     private Record createdRecords[];
 
     //retrieve non-sellable and created items
