@@ -12,8 +12,11 @@ public class VendingMachine {
     private MoneyBox vendoMoney = new MoneyBox();
     private UserMoneyBox userMoney = new UserMoneyBox();
     private MoneyCalc moneyCalc = new MoneyCalc(vendoMoney, userMoney);
-    private RegularVendo regular = new RegularVendo();
-    private SpecialVendo special = new SpecialVendo();
+
+    private RegularVendoFactory regularVendoFactory = new RegularVendoFactory();
+    private SpecialVendoFactory specialVendoFactory = new SpecialVendoFactory();
+    private Vendo regular = regularVendoFactory.getNewVendo();
+    private Vendo special = specialVendoFactory.getNewVendo();
 
     /*
      * puts an item into a speicific slot
