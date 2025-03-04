@@ -4,6 +4,11 @@ abstract class Vendo {
     //can hold item instances
     public static Item sellableItems[]; //hold available sellable items
     private Record sellableRecords[]; //store the recordds of sellable items
+   
+
+    public static Item[] getSellableItems() {
+        return sellableItems;
+    }
 
     //set the records of sellable items
     public void setRecords(Record[] records) {
@@ -29,5 +34,7 @@ abstract class Vendo {
 
         return null;
     }
+
+
 
 }

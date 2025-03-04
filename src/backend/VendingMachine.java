@@ -19,14 +19,14 @@ public class VendingMachine {
     private Vendo special = specialVendoFactory.getNewVendo();
 
     /*
-     * puts an item into a speicific slot
-     * @param slot the slot to the occupied 
+     * puts an item into a specific slot
+     * @param slot the slot to be occupied 
      * @param index the index of the item to be added
      */
     public void addItem(int slot, int index) { 
         
         if (index != -1)
-            regular.getSlotsItem()[slot] = RegularVendo.sellableItems[index];
+            ((RegularVendo)regular).setSlot(slot, Vendo.getSellableItems()[index]);
 
     }
 
@@ -37,7 +37,7 @@ public class VendingMachine {
  */
     public void restockSellable(int quantity, int slot) {
     
-        RegularVendo.sellableItems[slot].addStock(quantity, RegularVendo.sellableItems[slot]);
+        ((SellableItem)RegularVendo.sellableItems[slot]).addStock(quantity, RegularVendo.sellableItems[slot]);
     }
     /* restock a non-sellable item in the special vending machine.
      * @param quantity the quantity of item to be restocked
@@ -45,7 +45,7 @@ public class VendingMachine {
     */
     public void restockNonSellable (int quantity, int slot) {
 
-        SpecialVendo.nonSellableItems[slot].addStock(quantity, SpecialVendo.nonSellableItems[slot]);
+        ((NonSellableItem)SpecialVendo.nonSellableItems[slot]).addStock(quantity, SpecialVendo.nonSellableItems[slot]);
 
     }
     /* restock a created item in the special vending machine.
@@ -108,9 +108,9 @@ public class VendingMachine {
         for (int i = 0; i < TOTAL_SELLABLE_ITEM; i++) {
             totalSales += regular.getSellableRecords()[i].getSoldAmount();
             if (i < TOTAL_NON_SELLABLE_ITEM)
-                totalSales += special.getNonSellRecords()[i].getSoldAmount();
+                totalSales += ((SpecialVendo)special).getNonSellRecords()[i].getSoldAmount();
             if (i < TOTAL_CREATED_ITEM)
-                totalSales += special.getCreatedRecords()[i].getSoldAmount();
+                totalSales += ((SpecialVendo)special).getCreatedRecords()[i].getSoldAmount();
         }
         
         return totalSales;
@@ -129,11 +129,11 @@ public class VendingMachine {
             if (regular.getItemRecord(item) != null)
                 r = regular.getItemRecord(item);
             // If not found in regular records, check in non-sellable items records of special vending machine.
-            else if (special.getnonSellItemRecord(item) != null) 
-                r = special.getnonSellItemRecord(item);
+            else if (((SpecialVendo)special).getnonSellItemRecord(item) != null) 
+                r = ((SpecialVendo)special).getnonSellItemRecord(item);
             // If not found in non-sellable items records, check in created items records of special vending machine.
-            else if (special.getCreatedItemRecord(item) != null)
-                r = special.getCreatedItemRecord(item);
+            else if (((SpecialVendo)special).getCreatedItemRecord(item) != null)
+                r = ((SpecialVendo)special).getCreatedItemRecord(item);
 
             r.setSoldAmount(1);
             r.setSold(r.getSold() + 1);
@@ -153,11 +153,11 @@ public class VendingMachine {
     }
 
     public RegularVendo getRegular() {
-        return regular;
+        return (RegularVendo)regular;
     }
 
     public SpecialVendo getSpecial() {
-        return special;
+        return (SpecialVendo)special;
     }
 
     

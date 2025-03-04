@@ -6,7 +6,7 @@ import java.util.*;
 public class Initialize {
 
     //initialize an array of 'Item' objects from a given file path
-    public Item[] initialize(String path) {
+    public Item[] initialize(String path, String type) {
 
         Item[] items; // Declare an array to store the 'Item' objects.
         String name;
@@ -32,9 +32,15 @@ public class Initialize {
             calories = sc.nextFloat();
             sc.nextLine();
             icon = sc.nextLine();
-
+            
+            Item a = null;
             // Create a new 'Item' object with the read data.
-            Item a = new Item(name, price, calories,icon);
+            if (type.equals("sellable")) {
+                a = new SellableItem(name, price, calories, icon);
+            }
+            else {
+                a = new NonSellableItem(name, price, calories, icon);
+            }
             // Add the newly created 'Item' object to the 'items' array.
             items[i] = a;
         }
