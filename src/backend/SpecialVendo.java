@@ -1,6 +1,6 @@
 package backend;
 
-public class SpecialVendo extends RegularVendo{
+public class SpecialVendo extends Vendo {
 
     //hold non-sellable items an their records for special vending machine
     public static Item nonSellableItems[];
@@ -56,6 +56,5 @@ public class SpecialVendo extends RegularVendo{
         }
 
         return null; // Returns null if the record for the created item is not found.
-
     }
 }
