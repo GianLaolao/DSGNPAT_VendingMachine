@@ -4,15 +4,27 @@ package backend;
  */
 public class RegularVendo extends Vendo{
 
-    private Item[] slotsItem = new Item[8]; //accepts ArrayList of Item
+     //accepts ArrayList of Item
 
     //set an item in a specific slot in the vending machine.
     public void setSlot(int slot, Item item) {
-        slotsItem[slot] = item;
+        getSlotsItem()[slot] = item;
     }
 
-    //retrieve the items stored in the vending machine slots.
-    public Item[] getSlotsItem() {
-        return slotsItem;
+    public void addItem(int slot, int index) { 
+        
+        if (index != -1)
+            setSlot(slot, Vendo.getSellableItems()[index]);
+    }
+
+    public void restockSellable(int quantity, int slot) {
+        ((SellableItem)Vendo.sellableItems[slot]).addStock(quantity, Vendo.sellableItems[slot]);
+    }
+
+    public void dispenseItem(Item item) {
+        item.getStock().remove(0);
+        Record r = getItemRecord(item);
+        r.setSoldAmount(1);
+        r.setSold(r.getSold() + 1);
     }
 }
