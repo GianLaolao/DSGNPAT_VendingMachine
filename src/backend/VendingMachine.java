@@ -24,10 +24,7 @@ public class VendingMachine {
      * @param index the index of the item to be added
      */
     public void addItem(int slot, int index) { 
-        
-        if (index != -1)
-            ((RegularVendo)regular).setSlot(slot, Vendo.getSellableItems()[index]);
-
+        ((RegularVendo)regular).addItem(slot, index);
     }
 
 /* 
@@ -36,17 +33,14 @@ public class VendingMachine {
  * @param slot the slot to be occupied for restocking 
  */
     public void restockSellable(int quantity, int slot) {
-    
-        ((SellableItem)RegularVendo.sellableItems[slot]).addStock(quantity, RegularVendo.sellableItems[slot]);
+       ((RegularVendo)regular).restockSellable(quantity, slot);
     }
     /* restock a non-sellable item in the special vending machine.
      * @param quantity the quantity of item to be restocked
      * @param slot the slot to be occupied for restocking
     */
     public void restockNonSellable (int quantity, int slot) {
-
-        ((NonSellableItem)SpecialVendo.nonSellableItems[slot]).addStock(quantity, SpecialVendo.nonSellableItems[slot]);
-
+        ((SpecialVendo)special).restockNonSellable(quantity, slot);
     }
     /* restock a created item in the special vending machine.
      * @param quantity the quantity of item to be restocked
@@ -54,7 +48,7 @@ public class VendingMachine {
     */
     public boolean restockCreatedItems (int quantity, int slot) {
 
-        return SpecialVendo.createdItems[slot].addStock(quantity, SpecialVendo.createdItems[slot]);
+        return ((SpecialVendo)special).restockCreatedItems(quantity, slot);
     }
 
     /*
@@ -63,9 +57,7 @@ public class VendingMachine {
     * @param slot the slot of the item selected
     */
     public void setSellabeItemPrice(int price, int slot){
-
-        RegularVendo.sellableItems[slot].setPrice(price);
-    
+        Vendo.sellableItems[slot].setPrice(price);
     }
     /*
      * sets price for non-sellable item
@@ -74,7 +66,7 @@ public class VendingMachine {
      */
     public void setNonSellabeItemPrice(int price, int slot){
 
-        SpecialVendo.nonSellableItems[slot].setPrice(price);
+        ((SpecialVendo)special).setNonSellableItemPrice(price, slot);
     }
     /*
      * sets price for a created item in the special vending machine
@@ -83,7 +75,7 @@ public class VendingMachine {
      */
     public void setCreatedItemPrice(int price, int slot){
 
-        SpecialVendo.createdItems[slot].setPrice(price);
+        ((SpecialVendo)special).setCreatedItemPrice(price, slot);
     }
 
     /*
@@ -91,12 +83,7 @@ public class VendingMachine {
      * @param item The item to be dispensed.
      */
     public void dispenseItem(Item item) {
-        
-        item.getStock().remove(0);
-        Record r = regular.getItemRecord(item);
-        r.setSoldAmount(1);
-        r.setSold(r.getSold() + 1);
-        
+      ((RegularVendo)regular).dispenseItem(item);
     }
     //calculate and retrieve the total sales for all items in the vending machine.
     public int getTotalSales() {
@@ -121,24 +108,7 @@ public class VendingMachine {
      * @param order The list of items in the order.
      */
     public void getOrder(ArrayList<Item> order) {
-
-        for (Item item : order) {
-            item.getStock().remove(0);
-            Record r = null;
-            // Check if the item exists in the regular vending machine records.
-            if (regular.getItemRecord(item) != null)
-                r = regular.getItemRecord(item);
-            // If not found in regular records, check in non-sellable items records of special vending machine.
-            else if (((SpecialVendo)special).getnonSellItemRecord(item) != null) 
-                r = ((SpecialVendo)special).getnonSellItemRecord(item);
-            // If not found in non-sellable items records, check in created items records of special vending machine.
-            else if (((SpecialVendo)special).getCreatedItemRecord(item) != null)
-                r = ((SpecialVendo)special).getCreatedItemRecord(item);
-
-            r.setSoldAmount(1);
-            r.setSold(r.getSold() + 1);
-        }
-
+        ((SpecialVendo)special).getOrder(order);
     }
 
     public MoneyCalc getMoneyCalc() {
