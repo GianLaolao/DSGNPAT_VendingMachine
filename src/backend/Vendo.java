@@ -11,7 +11,8 @@ abstract class Vendo {
     public static CreatedItem createdItems[];
     private Record createdRecords[];
     
-    private Item[] slotsItem = new Item[8];
+    private final int VENDING_MACHINE_SLOTS = 8; 
+    private Item[] slotsItem = new Item[VENDING_MACHINE_SLOTS];
 
 
     public static Item[] getSellableItems() {
