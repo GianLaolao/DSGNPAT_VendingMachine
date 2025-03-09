@@ -16,17 +16,15 @@ abstract class Vendo {
 
 
     public static Item[] getSellableItems() {
-        return sellableItems;
+        return this.sellableItems;
     }
 
-    //set the records of sellable items
     public void setRecords(Record[] records) {
         this.sellableRecords = records;
     }
 
-    //retrieve the records of sellable items
     public Record[] getSellableRecords() {
-        return sellableRecords; //returns the vending machine records
+        return this.sellableRecords; 
     }
 
     /*
@@ -36,7 +34,7 @@ abstract class Vendo {
      */
     public Record getItemRecord(Item item) {
 
-        for (Record r : sellableRecords) {
+        for (Record r : this.sellableRecords) {
             if (r.getItem().equals(item))
                 return r;
         }
@@ -45,14 +43,14 @@ abstract class Vendo {
     }
 
     public Item[] getSlotsItem() {
-        return slotsItem;
+        return this.slotsItem;
     }
 
     public static Item[] getNonSellableItems() {
-        return nonSellableItems;
+        return this.nonSellableItems;
     }
     public static CreatedItem[] getCreatedItems() {
-        return createdItems;
+        return this.createdItems;
     }
 
     //set records for non-sellable and created items
@@ -66,13 +64,13 @@ abstract class Vendo {
 
     //retrieve the records for non-sellable and created items.
     public Record[] getNonSellRecords() {
-        return nonSellRecords;
+        return this.nonSellRecords;
     }
 
     //get the record of a specific non-sellable item.
     public Record getnonSellItemRecord(Item item) {
 
-        for (Record r : nonSellRecords) {
+        for (Record r : this.nonSellRecords) {
             if (r.getItem().equals(item))
                 return r; // Returns the record of the specified non-sellable item if found.
         }
@@ -82,12 +80,12 @@ abstract class Vendo {
     }
     // retrieve the records for created items.
     public Record[] getCreatedRecords() {
-        return createdRecords;
+        return this.createdRecords;
     }
     // get the record of a specific created item.
     public Record getCreatedItemRecord(Item item) {
 
-        for (Record r : createdRecords) {
+        for (Record r : this.createdRecords) {
             if (r.getItem().equals(item))
                 return r; // Returns the record of the specified created item if found.
         }
