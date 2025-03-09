@@ -1,18 +1,17 @@
 package backend;
 
 abstract class Vendo {
-    //can hold item instances
-    public static Item sellableItems[]; //hold available sellable items
-    private Record sellableRecords[]; //store the recordds of sellable items
-    private Item[] slotsItem = new Item[8];
-
-    //hold non-sellable items an their records for special vending machine
+   
+    public static Item sellableItems[]; 
+    private Record sellableRecords[]; 
+    
     public static Item nonSellableItems[];
     private Record nonSellRecords[];
-
-    //hold created items and their records for special vending machine
+    
     public static CreatedItem createdItems[];
     private Record createdRecords[];
+    
+    private Item[] slotsItem = new Item[8];
 
 
     public static Item[] getSellableItems() {
